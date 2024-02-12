@@ -6,7 +6,7 @@ export const routes: Routes = [
     {
         path:"",
         pathMatch: "full",
-        redirectTo: "add" //temporário até montar o formulário de inserção.
+        redirectTo: "pressao" //temporário até montar o formulário de inserção.
     },
     {
         path: "pressao",

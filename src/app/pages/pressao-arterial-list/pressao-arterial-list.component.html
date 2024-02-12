@@ -1,3 +1,18 @@
-<h1>
-    funciona. vizualizo a lista
-</h1>
+<div class="container">
+    <h1>
+        Acompanhamento de pressão arterial
+    </h1>
+    <button mat-fab color="primary" aria-label="Bottão para adicionar nova pressão arterial"
+    [routerLink]="['/add']">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+<mat-list>
+    @for (pressao of listaPressao; track pressao.id) {
+        <mat-list-item>
+            <span>Pressao sistólica: {{pressao.sistolica}} | Pressao diastólica: {{pressao.diastolica}}</span>
+            <span matListItemMeta>data da medição: {{pressao.dataMedicao}}</span>
+        </mat-list-item>
+    }
+</mat-list>
+   

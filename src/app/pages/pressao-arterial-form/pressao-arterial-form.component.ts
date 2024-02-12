@@ -5,12 +5,12 @@ import {MatButtonModule} from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { PressaoArterialService } from '../../services/pressao-arterial.service';
 import { NewPressaoArterial } from '../../models/new-pressao.dto';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-pressao-arterial-form',
   standalone: true,
-  imports: [MatFormFieldModule, MatButtonModule,MatInputModule, FormsModule],
+  imports: [MatFormFieldModule, MatButtonModule,MatInputModule, FormsModule, RouterModule],
   templateUrl: './pressao-arterial-form.component.html',
   styleUrl: './pressao-arterial-form.component.scss'
 })
