@@ -1,4 +1,16 @@
 .container{
     display: flex;
-    flex-direction: column;
+    flex-direction: column; // alinhamento do eixo principal.
+    justify-content: space-around;
+    align-items: center; // alinhamento do einxo secundário.
+}
+.input-form{
+    width: max-content;
+}
+
+.button-row{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 10px;
 }
