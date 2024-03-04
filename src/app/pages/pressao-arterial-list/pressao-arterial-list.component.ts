@@ -5,16 +5,20 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { PressaoArterialService } from '../../services/pressao-arterial.service';
 import { PressaoArterial } from '../../models/pressao-arterial.dto';
+import { PressaoArterialFilterComponent } from "../../shared/pressao-arterial-filter/pressao-arterial-filter.component";
+import { SharedFilterService } from '../../services/shared-filter.service';
+import { PressaoFilter } from '../../models/pressao-filter.dto';
 
 @Component({
-  selector: 'app-pressao-arterial-list',
-  standalone: true,
-  imports: [MatListModule, MatIconModule, MatButtonModule, RouterModule, MatTableModule, DatePipe, MatPaginatorModule],
-  templateUrl: './pressao-arterial-list.component.html',
-  styleUrl: './pressao-arterial-list.component.scss'
+    selector: 'app-pressao-arterial-list',
+    standalone: true,
+    templateUrl: './pressao-arterial-list.component.html',
+    styleUrl: './pressao-arterial-list.component.scss',
+    imports: [MatListModule, MatIconModule, MatButtonModule, RouterModule, MatTableModule, DatePipe, MatPaginatorModule, MatSidenavModule, PressaoArterialFilterComponent,]
 })
 export class PressaoArterialListComponent implements OnInit, AfterViewInit{
 
@@ -27,22 +31,29 @@ export class PressaoArterialListComponent implements OnInit, AfterViewInit{
 
   dataSource !: MatTableDataSource<PressaoArterial>;
 
+  filter !: PressaoFilter;
+
   constructor(
-    private pressaoService: PressaoArterialService
+    private pressaoService: PressaoArterialService,
+    private filterService: SharedFilterService
   ) { }
 
   ngOnInit(): void {
-    this.madeRequest();
+    this.filterService.pressaoFiltered$.subscribe(filter => {
+      this.filter = filter;
+      this.madeRequest(0, 5, filter);
+    });
   }
 
-  madeRequest(page: number = 0, linesPerPage = 5){
+  madeRequest(page: number = 0, linesPerPage = 5, filter: PressaoFilter){
     this.pressaoService.getPagePressao(
       {
         page: page,
         linesPerPage: linesPerPage,
         orderBy: "dataMedicao",
-        direction: "DESC"
-      }
+        direction: "DESC",
+      },
+      filter
     ).subscribe(response => {
       this.dataSource = new MatTableDataSource<PressaoArterial>(response.content);
       this.totalElements = response.totalElements;
@@ -54,6 +65,6 @@ export class PressaoArterialListComponent implements OnInit, AfterViewInit{
   }
 
   changePage($event: PageEvent) {
-    this.madeRequest($event.pageIndex, $event.pageSize);
+    this.madeRequest($event.pageIndex, $event.pageSize, this.filter);
   }
 }

@@ -1,0 +1,36 @@
+<form [formGroup]="filterForm" (ngSubmit)="filtrarPressoes(); $event.preventDefault()" class="container">
+    <mat-form-field class="input-form">
+        <mat-label>Pressão sistólica inicial</mat-label>
+        <input type="number" step="0.01" matInput placeholder="ex: 120.00" formControlName="sistolicaInicial" name="sistolicaInicial">
+    </mat-form-field>
+    <mat-form-field class="input-form">
+        <mat-label>Pressão sistólica final</mat-label>
+        <input type="number" step="0.01" matInput placeholder="ex: 80.00" formControlName="sistolicaFinal" name="sistolicaFinal">
+    </mat-form-field>
+    <mat-form-field class="input-form">
+        <mat-label>Pressão diastólica inicial</mat-label>
+        <input type="number" step="0.01" matInput placeholder="ex: 120.00" formControlName="diastolicaInicial" name="diastolicaInicial">
+    </mat-form-field>
+    <mat-form-field class="input-form">
+        <mat-label>Pressão diastólica final</mat-label>
+        <input type="number" step="0.01" matInput placeholder="ex: 80.00" formControlName="diastolicaFinal" name="diastolicaFinal">
+    </mat-form-field>
+    <mat-form-field class="input-form">
+        <mat-label>Data de medição inicial</mat-label>
+        <input type="date" step="0.01" matInput placeholder="ex: 120.00" formControlName="dataMedicaoInicial" name="dataMedicaoInicial">
+    </mat-form-field>
+    <mat-form-field class="input-form">
+        <mat-label>Data de medição final</mat-label>
+        <input type="date" step="0.01" matInput placeholder="ex: 80.00" formControlName="dataMedicaoFinal" name="dataMedicaoFinal">
+    </mat-form-field>
+    <mat-form-field class="input-form">
+        <mat-select formControlName="risco" name="risco">
+            @for (risco of riscos; track $index) {
+                <mat-option [value]="risco">{{risco}}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="primary">
+        Registrar pressão arterial
+    </button>
+</form>
