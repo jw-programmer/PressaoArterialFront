@@ -5,7 +5,7 @@ export interface PressaoFilter {
     sistolicaFinal: string,
     diastolicaInicial: string,
     diastolicaFinal: string,
-    dataMedicaoInicial: string,
-    dataMedicaoFinal: string,
+    dataHoraMedicaoInicial: string,
+    dataHoraMedicaoFinal: string,
     risco: Risco
 }

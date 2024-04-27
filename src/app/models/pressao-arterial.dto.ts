@@ -5,5 +5,5 @@ export interface PressaoArterial {
     sistolica: number
     diastolica: number
     risco: Risco
-    dataMedicao: Date
+    dataHoraMedicao: Date
   }

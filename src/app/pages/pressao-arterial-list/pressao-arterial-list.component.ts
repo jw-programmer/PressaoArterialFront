@@ -50,7 +50,7 @@ export class PressaoArterialListComponent implements OnInit, AfterViewInit{
       {
         page: page,
         linesPerPage: linesPerPage,
-        orderBy: "dataMedicao",
+        orderBy: "dataHoraMedicao",
         direction: "DESC",
       },
       filter

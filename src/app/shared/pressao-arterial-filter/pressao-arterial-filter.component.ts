@@ -26,8 +26,8 @@ export class PressaoArterialFilterComponent {
       sistolicaFinal: [null],
       diastolicaInicial: [null],
       diastolicaFinal: [null],
-      dataMedicaoInicial: [null],
-      dataMedicaoFinal: [null],
+      dataHoraMedicaoInicial: [null],
+      dataHoraMedicaoFinal: [null],
       risco: [null]
     });
   }
